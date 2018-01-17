@@ -89,11 +89,11 @@ void ofApp::exit() {
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     switch (key) {
-        case 'C':
-        case 'c':
-            if (cam.getMouseInputEnabled()) cam.disableMouseInput();
-            else cam.enableMouseInput();
-            break;
+//        case 'C':
+//        case 'c':
+//            if (cam.getMouseInputEnabled()) cam.disableMouseInput();
+//            else cam.enableMouseInput();
+//            break;
         case 'F':
         case 'f':
             ofToggleFullscreen();
@@ -126,10 +126,10 @@ void ofApp::keyPressed(int key){
             moveImg('r');
             break;
         case 's':
-            //stackOrder(0);
+            stackOrder(0);
             break;
         case 'b':
-            //stackOrder(1);
+            stackOrder(1);
             break;
         case 'i':
             zoom('i');
@@ -144,9 +144,9 @@ void ofApp::keyPressed(int key){
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
     switch (key) {
-        case OF_KEY_ALT:
-            cam.disableMouseInput();
-            break;
+//        case OF_KEY_ALT:
+//            cam.disableMouseInput();
+//            break;
         case OF_KEY_CONTROL:
             ctrlKeyDown = false;
             break;
@@ -214,26 +214,30 @@ void ofApp::stackOrder(int j) {
     Image *tmpImg;
     
     switch(j) {
-        case(0):
-            for (i = 0; i < images.size(); i++)
-                if (images[i]->bSelected == true)
-                    tmpImg = images[i+1];
-                    if (i == 0) {
-                        break;
-                    } else {
+        case(1):
+            for (i = 0; i < images.size(); i++) {
+                if (images[i]->bSelected == true) {
+                    if (i == 0) {return;}
+                    else {
+                        tmpImg = images[i-1];
                         images[i-1] = images[i];
                         images[i] = tmpImg;
                     }
+                }
+            }
             break;
-        case(1):
-            for (i = 0; i < images.size(); i++)
-                if (images[i]->bSelected == true)
-                    tmpImg = images[i-1];
-                    if (i == images.size()-1) {break;}
+            
+        case(0):
+            for (i = 0; i < images.size(); i++) {
+                if (images[i]->bSelected == true) {
+                    if (i == images.size()-1) {return;}
                     else {
+                        tmpImg = images[i+1];
                         images[i+1] = images[i];
                         images[i] = tmpImg;
                     }
+                }
+            }
             break;
     }
 }
@@ -431,8 +435,8 @@ void ofApp::processSelection(int x, int y) {
             Image *image = images[res[0] - 1];
             image->bSelected = true;
             selectedImage = image;
-            images.erase(images.begin() + (res[0] - 1) );
-            images.push_back(image);
+            //images.erase(images.begin() + (res[0] - 1) );
+            //images.push_back(image);
     }
 }
 
