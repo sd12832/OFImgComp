@@ -10,7 +10,7 @@ Future plans involve creating an online demo of this application using *emscript
 
 I believe that this program will be useful for two sets of people: 
 
-  - People who want to understand how to make an image compositor using C++ and OpenFrameworks. 
+  - People who want to understand how to make an image compositor using *C++* and *OpenFrameworks*. 
   - People who want to see the logic behind an Image Compositor. 
   
 # How to Run the Program 
